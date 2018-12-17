@@ -1,6 +1,5 @@
 let contentfulConfig
-require('dotenv').config()
-
+require('dotenv').config('./.env')
 
 try {
   // Load the Contentful config from the .contentful.json
@@ -10,7 +9,8 @@ try {
 // Overwrite the Contentful config with environment variables if they exist
 contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID || contentfulConfig.spaceId,
-  accessToken: process.env.CONTENTFUL_DELIVERY_TOKEN || contentfulConfig.accessToken,
+  accessToken:
+    process.env.CONTENTFUL_DELIVERY_TOKEN || contentfulConfig.accessToken,
 }
 
 const { spaceId, accessToken } = contentfulConfig
@@ -39,19 +39,19 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `pages`,
-        path: `${__dirname}/src/pages/`
-      }
+        path: `${__dirname}/src/pages/`,
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `data`,
         path: `${__dirname}/src/data/`,
-        ignore: [`**/\.*`] // ignore files starting with a dot
-      }
+        ignore: [`**/\.*`], // ignore files starting with a dot
+      },
     },
     {
-      resolve: `gatsby-transformer-csv`
-    }
+      resolve: `gatsby-transformer-csv`,
+    },
   ],
 }
