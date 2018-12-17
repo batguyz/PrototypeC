@@ -1,5 +1,5 @@
 let contentfulConfig
-require('dotenv').config('./.env')
+require('dotenv').config({ path: './.env' })
 
 try {
   // Load the Contentful config from the .contentful.json
