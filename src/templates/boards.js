@@ -41,6 +41,8 @@ class BoardTemplate extends React.Component {
             </div>
           )}
 
+{post.childBoards !== null && (
+      <div>
           <h1>Board</h1>
           <h2>
             {post.childBoards.map((item, i) => (
@@ -51,7 +53,8 @@ class BoardTemplate extends React.Component {
               </li>
             ))}
           </h2>
-
+    </div>
+  )}
           <h1>MLS Statistics</h1>
           {post.mlsStatistics !== null && (
             <div>
