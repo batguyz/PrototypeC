@@ -1,6 +1,7 @@
 let contentfulConfig
-require('dotenv').config({ path: './.env' })
-
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 try {
   // Load the Contentful config from the .contentful.json
   contentfulConfig = require('./.contentful')
