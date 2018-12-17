@@ -1,3 +1,4 @@
+//env var
 require('dotenv').config()
 let contentfulConfig
 
