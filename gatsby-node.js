@@ -6,8 +6,8 @@ exports.createPages = ({ graphql, actions }) => {
 
   return new Promise((resolve, reject) => {
     const blogPost = path.resolve('./src/templates/blog-post.js')
-    const boardPost = path.resolve("./src/templates/boards.js");
-    const sweetsPost = path.resolve("./src/templates/sweets.js");
+    const boardPost = path.resolve('./src/templates/boards.js')
+    const sweetsPost = path.resolve('./src/templates/sweets.js')
 
     resolve(
       graphql(
@@ -28,10 +28,8 @@ exports.createPages = ({ graphql, actions }) => {
                   id
                   slug
                   mainContent {
-                    content {
-                      content {
-                        value
-                      }
+                    childContentfulRichText {
+                      html
                     }
                   }
                   mlsStatistics {
@@ -80,7 +78,7 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
-          `
+        `
       ).then(result => {
         if (result.errors) {
           console.log(result.errors)
@@ -93,34 +91,34 @@ exports.createPages = ({ graphql, actions }) => {
             path: `/blog/${post.node.slug}/`,
             component: blogPost,
             context: {
-              slug: post.node.slug
+              slug: post.node.slug,
             },
           })
         })
 
-        const boards = result.data.allContentfulBoards.edges;
+        const boards = result.data.allContentfulBoards.edges
         boards.forEach((board, index) => {
           createPage({
             path: `/board/${board.node.slug}/`,
             component: boardPost,
             context: {
               id: board.node.id,
-              slug: board.node.slug
-            }
-          });
-        });
+              slug: board.node.slug,
+            },
+          })
+        })
 
-        const sweets = result.data.allContentfulSweets.edges;
+        const sweets = result.data.allContentfulSweets.edges
         sweets.forEach((sweet, index) => {
           createPage({
             path: `/sweet/${sweet.node.slug}/`,
             component: sweetsPost,
             context: {
               id: sweet.node.id,
-              slug: sweet.node.slug
-            }
-          });
-        });
+              slug: sweet.node.slug,
+            },
+          })
+        })
       })
     )
   })
