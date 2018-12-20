@@ -32,6 +32,7 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sharp',
+    'gatsby-plugin-netlify-cache',
     `@contentful/gatsby-transformer-contentful-richtext`,
     {
       resolve: 'gatsby-source-contentful',
